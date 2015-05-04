@@ -1,7 +1,7 @@
 import glob, os, json, urllib, sys, urllib2, ntpath
 import logging
 
-LOG_FILENAME = 'download_logger.out'
+LOG_FILENAME = 'downloader_logger.out'
 logger = logging.getLogger('downloader')
 logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
 
