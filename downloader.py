@@ -11,6 +11,7 @@ def path_leaf(path):
 
 if(len(sys.argv) < 3):
     print("USAGE: python downloader.py <input_directory> <output_directory>")
+    sys.exit()
 
 for file in glob.glob(sys.argv[1].rstrip("/") + "/*.json"):
     with open(file) as data_file:
