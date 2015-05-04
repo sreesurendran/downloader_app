@@ -9,7 +9,10 @@ def path_leaf(path):
     head, tail = ntpath.split(path)
     return tail or ntpath.basename(head)
 
-for file in glob.glob(sys.argv[1] + "/*.json"):
+if(len(sys.argv) < 3):
+    print("USAGE: python downloader.py <input_directory> <output_directory>")
+
+for file in glob.glob(sys.argv[1].rstrip("/") + "/*.json"):
     with open(file) as data_file:
         data = json.load(data_file)
     testfile = urllib.URLopener()
@@ -17,7 +20,7 @@ for file in glob.glob(sys.argv[1] + "/*.json"):
         val = urllib2.urlopen(data["source"])
         finalurl = val.geturl()
         filename = path_leaf(finalurl)
-        finalfilename = sys.argv[2] + "/" + filename
+        finalfilename = sys.argv[2].rstrip("/") + "/" + filename
         testfile.retrieve(finalurl,finalfilename)
         logger.info(data["source"] + " downloaded")
     except:
